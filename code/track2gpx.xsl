@@ -29,7 +29,7 @@
   <xsl:element name="trkpt">
     <xsl:attribute name="lat"><xsl:value-of select="@LAT"/></xsl:attribute>
     <xsl:attribute name="lon"><xsl:value-of select="@LON"/></xsl:attribute>
-    <xsl:element name="time"><xsl:value-of select="@TIMESTAMP"/></xsl:element>
+    <xsl:element name="time"><xsl:value-of select="translate(@TIMESTAMP, ' ', 'T')"/></xsl:element><!-- http://stackoverflow.com/questions/586231/how-can-i-convert-a-string-to-upper-or-lower-case-with-xslt -->
     <xsl:element name="speed"><xsl:value-of select="@SPEED"/></xsl:element>
     <xsl:element name="course"><xsl:value-of select="@COURSE"/></xsl:element>
     <xsl:element name="heading"><xsl:value-of select="@HEADING"/></xsl:element>

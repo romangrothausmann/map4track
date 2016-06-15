@@ -29,7 +29,6 @@ world_500m_%.pngw : world.topo.bathy.200404.3x21600x21600.%.pngw
 
 track_wget.gpx : track_wget.xml
 	xsltproc code/track2gpx.xsl $< > $@  # or use: http://www.gpsvisualizer.com/
-	sed -i 's|\(<time>.*\) \(.*</time>\)|\1T\2|g' $@ # without gqis only undertands the date but not the time
 
 track_wget.shp : track_wget.gpx
 
