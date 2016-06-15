@@ -8,7 +8,6 @@
 https://docs.qgis.org/2.2/en/docs/user_manual/plugins/plugins_georeferencer.html
 http://gis.stackexchange.com/questions/28881/convert-an-arbitrary-meta-data-free-map-image-into-qgis-project
 
-- convert XML to GPX: http://www.gpsvisualizer.com/
 - load GPX as vector in qgis
 - connect points to lines with Point2One plugin: http://gis.stackexchange.com/questions/898/convert-xy-points-to-a-line#899
 - make waypoint labels only show up on hover: http://gis.stackexchange.com/questions/86130/label-features-on-hover-click-with-qgis
@@ -27,6 +26,10 @@ all : track_on_map.pdf
 
 world_500m_%.pngw : world.topo.bathy.200404.3x21600x21600.%.pngw
 	ln -s $< $@
+
+track_wget.gpx : track_wget.xml
+	xsltproc code/track2gpx.xsl $< > $@  # or use: http://www.gpsvisualizer.com/
+	sed -i 's|\(<time>.*\) \(.*</time>\)|\1T\2|g' $@ # without gqis only undertands the date but not the time
 
 track_wget.shp : track_wget.gpx
 
