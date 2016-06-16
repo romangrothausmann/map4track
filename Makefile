@@ -14,7 +14,7 @@
 # - export raster and overlays as SVG (not tested yet): http://gis.stackexchange.com/questions/61198/drawing-on-jpg-map-image-with-proj4-perl#61201
 
 
-all : track_on_map.pdf
+all : track_on_map.pdf track_on_map.png
 
 
 %.png :
@@ -48,6 +48,15 @@ track_on_map.qgs : world.topo.bathy.200404.3x21600x21600.B1.png	world.topo.bathy
 	qgis $^
 
 track_on_map.pdf : track_on_map.qgs
-	shp2img ||| qgis --snapshot --project $< # http://gis.stackexchange.com/questions/61198/drawing-on-jpg-map-image-with-proj4-perl#61201
+	qgis --project $< # export as PDF from composer
+
+track_on_map.png : track_on_map.qgs
+	qgis --project $< --snapshot $@ # http://gis.stackexchange.com/questions/61198/drawing-on-jpg-map-image-with-proj4-perl#61201
+
+# track_on_map.map : track_on_map.qgs
+# 	msexport # http://docs.qgis.org/1.8/de/docs/user_manual/plugins/plugins_mapserver_export.html
+
+# track_on_map.png : track_on_map.map
+# 	shp2img -m $< -o $@ -e x1 y1 x2 y2 -s x y # http://mapserver.org/utilities/shp2img.html
 
 .SECONDARY:
