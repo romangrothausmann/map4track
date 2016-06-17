@@ -51,12 +51,12 @@ track_on_map.pdf : track_on_map.qgs
 	qgis --project $< # export as PDF from composer
 
 track_on_map.png : track_on_map.qgs
-	qgis --project $< --snapshot $@ # http://gis.stackexchange.com/questions/61198/drawing-on-jpg-map-image-with-proj4-perl#61201
+	qgis --project $< --snapshot $@ # --width 1500 # --extent  # http://gis.stackexchange.com/questions/61198/drawing-on-jpg-map-image-with-proj4-perl#61201
 
-# track_on_map.map : track_on_map.qgs
+# track_on_map.map : track_on_map.qgs # https://plugins.qgis.org/plugins/rt_mapserver_exporter/
 # 	msexport # http://docs.qgis.org/1.8/de/docs/user_manual/plugins/plugins_mapserver_export.html
 
-# track_on_map.png : track_on_map.map
+# track_on_map.% : track_on_map.map # should also work for pdf (inclusion of former shp2pdf): http://mapserver.org/output/pdf.html#testing
 # 	shp2img -m $< -o $@ -e x1 y1 x2 y2 -s x y # http://mapserver.org/utilities/shp2img.html
 
 .SECONDARY:
