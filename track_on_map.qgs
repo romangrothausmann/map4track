@@ -340,7 +340,7 @@
             <blendMode>0</blendMode>
             <featureBlendMode>0</featureBlendMode>
             <layerTransparency>0</layerTransparency>
-            <displayfield>name</displayfield>
+            <displayfield>ogr_speed</displayfield>
             <label>0</label>
             <labelattributes>
                 <label fieldname="" text="Label"/>
