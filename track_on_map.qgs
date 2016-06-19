@@ -143,7 +143,7 @@
         </Composition>
     </Composer>
     <projectlayers layercount="4">
-        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
             <id>track_points20160616221522954</id>
             <datasource>./track_wget.gpx|layername=track_points</datasource>
             <title></title>
@@ -183,8 +183,8 @@
                             <prop k="outline_width" v="0"/>
                             <prop k="outline_width_map_unit_scale" v="0,0"/>
                             <prop k="outline_width_unit" v="MM"/>
-                            <prop k="scale_method" v="area"/>
-                            <prop k="size" v="3"/>
+                            <prop k="scale_method" v="diameter"/>
+                            <prop k="size" v="0.01"/>
                             <prop k="size_map_unit_scale" v="0,0"/>
                             <prop k="size_unit" v="MM"/>
                             <prop k="vertical_anchor_point" v="1"/>
@@ -192,7 +192,7 @@
                     </symbol>
                 </symbols>
                 <rotation field="ogr_course"/>
-                <sizescale scalemethod="area"/>
+                <sizescale field="ogr_speed" scalemethod="diameter"/>
             </renderer-v2>
             <customproperties>
                 <property key="labeling" value="pal"/>
