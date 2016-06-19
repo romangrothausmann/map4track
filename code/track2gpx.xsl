@@ -1,10 +1,12 @@
 <!-- based on: https://de.wikibooks.org/wiki/Websiteentwicklung:_XSLT:_Erste_Schritte -->
 <!-- https://de.wikipedia.org/wiki/GPS_Exchange_Format#Beispiel -->
+<!-- extensions in ogr-ns (handled by qgis): http://www.gdal.org/drv_gpx.html -->
 
 <!-- run e.g.: xsltproc track2gpx.xsl gettrackxml.xml > gettrackxml.gpx -->
 
 <xsl:stylesheet version='1.0' 
   xmlns:xsl='http://www.w3.org/1999/XSL/Transform'
+  xmlns:ogr="http://osgeo.org/gdal"
   xmlns="http://www.topografix.com/GPX/1/1">
 
 <!-- https://en.wikipedia.org/wiki/GPS_Exchange_Format -->
@@ -30,12 +32,14 @@
     <xsl:attribute name="lat"><xsl:value-of select="@LAT"/></xsl:attribute>
     <xsl:attribute name="lon"><xsl:value-of select="@LON"/></xsl:attribute>
     <xsl:element name="time"><xsl:value-of select="translate(@TIMESTAMP, ' ', 'T')"/></xsl:element><!-- http://stackoverflow.com/questions/586231/how-can-i-convert-a-string-to-upper-or-lower-case-with-xslt -->
-    <xsl:element name="speed"><xsl:value-of select="@SPEED"/></xsl:element>
-    <xsl:element name="course"><xsl:value-of select="@COURSE"/></xsl:element>
-    <xsl:element name="heading"><xsl:value-of select="@HEADING"/></xsl:element>
-    <xsl:element name="UTCs"><xsl:value-of select="@UT"/></xsl:element><!-- e.g. date -d @1460838835 -->
-    <xsl:element name="station"><xsl:value-of select="@STATION"/></xsl:element>
-    <xsl:element name="gap"><xsl:value-of select="@GAP"/></xsl:element><!-- apparently describing size of gap between AIS points, see reformatted.js -->
+    <extensions>
+      <xsl:element name="ogr:speed"><xsl:value-of select="@SPEED"/></xsl:element>
+      <xsl:element name="ogr:course"><xsl:value-of select="@COURSE"/></xsl:element>
+      <xsl:element name="ogr:heading"><xsl:value-of select="@HEADING"/></xsl:element>
+      <xsl:element name="ogr:UTCs"><xsl:value-of select="@UT"/></xsl:element><!-- e.g. date -d @1460838835 -->
+      <xsl:element name="ogr:station"><xsl:value-of select="@STATION"/></xsl:element>
+      <xsl:element name="ogr:gap"><xsl:value-of select="@GAP"/></xsl:element><!-- apparently describing size of gap between AIS points, see reformatted.js -->
+    </extensions>
   </xsl:element>
 </xsl:template>
 </xsl:stylesheet>
